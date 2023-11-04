@@ -1,11 +1,11 @@
 FROM ubuntu:latest
-FROM node:14.15.0 as builder
+FROM node:14.20.0 as builder
 
 
 RUN mkdir /app
 WORKDIR /app
 
-RUN npm install -g @angular/cli@~14.0.0
+RUN npm install -g @angular/cli@15.2.10
 
 COPY package.json package-lock.json ./
 RUN npm install
@@ -14,9 +14,9 @@ COPY . .
 
 EXPOSE 4200
 
-CMD ["ng", "serve", "--watch", "--host", "0.0.0.0", "--poll", "1000"]
+# CMD ["ng", "serve", "--watch", "--host", "0.0.0.0", "--poll", "1000"]
 # CMD ["ng", "serve", "--host", "0.0.0.0"]
-# CMD ["npm", "start"]
+CMD ["npm", "start"]
 
 FROM builder
 
@@ -31,8 +31,9 @@ groupadd docker
 usermod -aG docker vscode
 EOF
 
-# CMD ["npm", "start"]
-CMD ["ng", "serve", "--watch", "--host", "0.0.0.0", "--poll", "1000"]
+CMD ["npm", "start"]
+# CMD ["ng", "serve", "--host", "0.0.0.0"]
+# CMD ["ng", "serve", "--watch", "--host", "0.0.0.0", "--poll", "1000"]
 
 # antigo
 # FROM node:20.8.1 as builder

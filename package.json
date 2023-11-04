@@ -12,7 +12,8 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "ng serve",
+    "start": "ng serve --watch --disable-host-check --poll 1000",
+    "dev": "ng serve",
     "build": "ng build",
     "build:prod": "npm run build -- --configuration production --aot",
     "test": "ng test",
@@ -62,7 +63,7 @@
     "ng2-completer": "^9.0.1",
     "ng2-smart-table": "^1.6.0",
     "ngx-echarts": "^4.2.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "~4.14.1",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
     "roboto-fontface": "0.8.0",
@@ -73,7 +74,7 @@
     "tinymce": "4.5.7",
     "tslib": "^2.3.1",
     "typeface-exo": "0.0.22",
-    "web-animations-js": "^2.3.2",
+    "web-animations-js": "~2.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
