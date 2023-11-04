@@ -1,0 +1,29 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body class="example-items-rows">
+        <input
+          type="text"
+          fullWidth
+          nbInput
+          fieldSize="large"
+          placeholder="Informe o email"
+        />
+
+        <nb-form-field>
+          <input [type]="getInputType()" fullWidth nbInput fieldSize="large" />
+          <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+            <nb-icon
+              [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+              pack="eva"
+              [attr.aria-label]="
+                showPassword ? 'hide password' : 'show password'
+              "
+            >
+            </nb-icon>
+          </button>
+        </nb-form-field>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
