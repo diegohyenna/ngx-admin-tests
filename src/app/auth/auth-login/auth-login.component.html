@@ -40,25 +40,25 @@
                 required
                 [status]="this.getStatusToFormInput('email')"
               />
-              <p
-                class="text-danger"
-                *ngIf="
-                  formLogin.get('email').hasError('email') &&
-                  formLogin.get('email').dirty
-                "
-              >
-                Email escrito errado
-              </p>
-              <p
-                class="text-danger"
-                *ngIf="
-                  formLogin.get('email').hasError('required') &&
-                  formLogin.get('email').dirty
-                "
-              >
-                Campo obrigatório
-              </p>
             </nb-form-field>
+            <p
+              class="text-danger"
+              *ngIf="
+                formLogin.get('email').hasError('pattern') &&
+                formLogin.get('email').dirty
+              "
+            >
+              Email escrito errado
+            </p>
+            <p
+              class="text-danger"
+              *ngIf="
+                formLogin.get('email').hasError('required') &&
+                formLogin.get('email').dirty
+              "
+            >
+              Campo obrigatório
+            </p>
           </div>
 
           <div class="w-100">
@@ -94,6 +94,15 @@
                 </nb-icon>
               </button>
             </nb-form-field>
+            <p
+              class="text-danger"
+              *ngIf="
+                formLogin.get('password').hasError('required') &&
+                formLogin.get('password').dirty
+              "
+            >
+              Campo obrigatório
+            </p>
           </div>
 
           <div class="w-100">

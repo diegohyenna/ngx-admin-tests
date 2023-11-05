@@ -16,7 +16,7 @@ export class AuthLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.form.group({
-      email: ["", [Validators.required, Validators.email]],
+      email: ["", [Validators.required, Validators.pattern(".+@.+\\..+")]],
       password: ["", [Validators.required]],
     });
   }
