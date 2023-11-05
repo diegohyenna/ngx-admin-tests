@@ -14,6 +14,7 @@ import {
 } from "@nebular/theme";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthLogoutComponent } from "./auth-logout/auth-logout.component";
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
   declarations: [AuthComponent, AuthLoginComponent, AuthLogoutComponent],

@@ -9,8 +9,9 @@ import {
 
 import { UserData } from "../../../@core/data/users";
 import { LayoutService } from "../../../@core/utils";
-import { map, takeUntil } from "rxjs/operators";
+import { filter, map, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
+import { AuthService } from "../../../auth/services/auth.service";
 
 @Component({
   selector: "ngx-header",
@@ -47,7 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { title: "Perfil", url: "/profile" },
     {
       title: "Sair",
-      url: "/logout",
+      tag: "logout",
     },
   ];
 
@@ -57,7 +58,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private themeService: NbThemeService,
     private userService: UserData,
     private layoutService: LayoutService,
-    private breakpointService: NbMediaBreakpointsService
+    private breakpointService: NbMediaBreakpointsService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -86,6 +88,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((themeName) => (this.currentTheme = themeName));
+
+    this.menuService
+      .onItemClick()
+      .pipe(map(({ item }: any) => item))
+      .subscribe((item) => {
+        if (item.tag === "logout") {
+          this.authService.logout();
+        }
+      });
   }
 
   ngOnDestroy() {

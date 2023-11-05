@@ -50,10 +50,6 @@ export const routes: Routes = [
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
-  {
-    path: "logout",
-    component: AuthLogoutComponent,
-  },
   { path: "", redirectTo: "auth", pathMatch: "full" },
   { path: "**", redirectTo: "pages" },
 ];
