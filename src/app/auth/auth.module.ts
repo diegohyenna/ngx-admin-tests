@@ -12,16 +12,18 @@ import {
   NbInputModule,
   NbLayoutModule,
 } from "@nebular/theme";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AuthLogoutComponent } from "./auth-logout/auth-logout.component";
 
 @NgModule({
-  declarations: [AuthComponent, AuthLoginComponent],
+  declarations: [AuthComponent, AuthLoginComponent, AuthLogoutComponent],
   imports: [
     CommonModule,
     ThemeModule,
     NbLayoutModule,
     NbInputModule,
     FormsModule,
+    ReactiveFormsModule,
     NbCardModule,
     NbButtonModule,
     NbFormFieldModule,

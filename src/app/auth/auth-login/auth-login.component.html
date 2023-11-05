@@ -1,29 +1,128 @@
 <nb-layout>
-  <nb-layout-column>
+  <nb-layout-header></nb-layout-header>
+  <nb-layout-column class="d-flex">
     <nb-card>
-      <nb-card-body class="example-items-rows">
-        <input
-          type="text"
-          fullWidth
-          nbInput
-          fieldSize="large"
-          placeholder="Informe o email"
-        />
+      <nb-card-header>
+        <nb-icon
+          icon="arrow-back-outline"
+          status="primary"
+          [style]="{ 'font-size': '24px' }"
+          [options]="{ animation: { type: 'zoom' } }"
+        ></nb-icon>
+      </nb-card-header>
+      <nb-card-body
+        class="example-items-rows d-flex flex-column align-items-center justify-content-center"
+      >
+        <form
+          [formGroup]="formLogin"
+          (submit)="login(formLogin.value)"
+          class="d-flex flex-column align-items-center justify-content-center"
+        >
+          <div class="w-100">
+            <h1 class="text-center">Bem vindo!</h1>
+            <h5 class="text-center">Faça o login com seu email e senha</h5>
+          </div>
 
-        <nb-form-field>
-          <input [type]="getInputType()" fullWidth nbInput fieldSize="large" />
-          <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
-            <nb-icon
-              [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
-              pack="eva"
-              [attr.aria-label]="
-                showPassword ? 'hide password' : 'show password'
-              "
+          <!-- joguei essa div pra poder respeitar o gap do flexbox e tbm pq se colocar o label dentro do nb-fomr-field o nb-icon fica bugado -->
+          <div class="w-100">
+            <label for="input-email" class="label">Email:</label>
+            <nb-form-field>
+              <nb-icon nbSuffix icon="at-outline" pack="eva"></nb-icon>
+              <input
+                id="input-email"
+                type="text"
+                name="email"
+                formControlName="email"
+                fullWidth
+                nbInput
+                fieldSize="large"
+                placeholder="Informe o email"
+                required
+                [status]="this.getStatusToFormInput('email')"
+              />
+              <p
+                class="text-danger"
+                *ngIf="
+                  formLogin.get('email').hasError('email') &&
+                  formLogin.get('email').dirty
+                "
+              >
+                Email escrito errado
+              </p>
+              <p
+                class="text-danger"
+                *ngIf="
+                  formLogin.get('email').hasError('required') &&
+                  formLogin.get('email').dirty
+                "
+              >
+                Campo obrigatório
+              </p>
+            </nb-form-field>
+          </div>
+
+          <div class="w-100">
+            <label for="input-password" class="label">Senha:</label>
+            <nb-form-field>
+              <input
+                id="input-password"
+                name="password"
+                formControlName="password"
+                [type]="getInputType()"
+                fullWidth
+                nbInput
+                fieldSize="large"
+                placeholder="Informe a senha"
+                required
+                [status]="this.getStatusToFormInput('password')"
+              />
+              <button
+                type="button"
+                nbSuffix
+                nbButton
+                ghost
+                (click)="toggleShowPassword()"
+              >
+                <nb-icon
+                  [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                  pack="eva"
+                  [status]="this.getStatusToFormInput('password')"
+                  [attr.aria-label]="
+                    showPassword ? 'hide password' : 'show password'
+                  "
+                >
+                </nb-icon>
+              </button>
+            </nb-form-field>
+          </div>
+
+          <div class="w-100">
+            <button
+              type="submit"
+              nbButton
+              fullWidth
+              shape="rectangle"
+              size="medium"
+              status="success"
             >
-            </nb-icon>
-          </button>
-        </nb-form-field>
+              Entrar
+
+              <nb-icon
+                class="loading"
+                *ngIf="loading"
+                icon="sync"
+                pack="eva"
+              ></nb-icon>
+            </button>
+          </div>
+
+          <div class="w-100">
+            Ainda não tem uma conta?
+            <a href="" (click)="$event.preventDefault()">Registre-se</a>
+          </div>
+        </form>
       </nb-card-body>
     </nb-card>
   </nb-layout-column>
+  <nb-layout-footer></nb-layout-footer>
 </nb-layout>

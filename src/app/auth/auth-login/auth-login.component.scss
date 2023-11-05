@@ -1,5 +1,22 @@
-nb-card-body.example-items-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+nb-card {
+  width: 100%;
+  nb-card-body.example-items-rows {
+    form {
+      width: 960px;
+      gap: 24px;
+    }
+  }
+}
+
+.loading {
+  animation: circle infinite linear 1s forwards;
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
